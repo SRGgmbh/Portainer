@@ -16,7 +16,7 @@
 			"logo": "https://nginxproxymanager.com/icon.png",
 			"repository": {
 				"stackfile": "stacks/nginx-proxy-manager/docker-stack.yml",
-				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
+				"url": "https://github.com/SRGgmbh/Portainer"
 			},
 			"env": [
 				{
@@ -84,7 +84,7 @@
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
 			"repository": {
 				"stackfile": "stacks/mssql/docker-stack.yml",
-				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
+				"url": "https://github.com/SRGgmbh/Portainer"
 			},
 			"env": [
 				{
