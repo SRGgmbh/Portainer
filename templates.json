@@ -7,13 +7,13 @@
 		{
 			"type": 3,
 			"title": "NGINX Proxy Manager",
-			"description": "NGINX Proxy Manager. ALREADY INCLUDED IN NODE SETUP",
+			"description": "NGINX Proxy Manager. ALREADY INCLUDED IN NODE SETUP! (repo: <a href=\"https://hub.docker.com/r/jc21/nginx-proxy-manager\" target=\"_blank\">Docker Hub</a>)",
 			"categories": [
 				"webserver"
 			],
-      "platform": "linux",
-      "note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://nginxproxymanager.com\" target=\"_blank\">NGINX Proxy Manager documentation</a> for further configuration.",
-      "logo": "https://nginxproxymanager.com/icon.png",
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://nginxproxymanager.com\" target=\"_blank\">NGINX Proxy Manager documentation</a> for further configuration.",
+			"logo": "https://nginxproxymanager.com/icon.png",
 			"repository": {
 				"stackfile": "stacks/nginx-proxy-manager/docker-stack.yml",
 				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
@@ -21,18 +21,43 @@
 			"env": [
 				{
 					"name": "INSTANCE",
-					"label": "INSTANCE",
+					"label": "Instance ID",
 					"description": "Container Instance Name (used for Hostname and Volume binding)"
 				},
 				{
-					"default": "latest",
 					"name": "VERSION",
-					"label": "VERSION",
-					"description": "Repository Version (see: https://hub.docker.com/r/jc21/nginx-proxy-manager)"
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/jc21/nginx-proxy-manager)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour"
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
 				},
 				{
 					"name": "DISABLE_IPV6",
 					"label": "IPv6",
+					"description": "NGINX IPv6 Support"
 					"select": [
 						{
 							"text": "Disabled",
@@ -50,7 +75,7 @@
 		{
 			"type": 3,
 			"title": "SQL Server 2019",
-			"description": "Microsoft SQL Server on Linux",
+			"description": "Microsoft SQL Server on Linux (repo: <a href=\"https://hub.docker.com/_/microsoft-mssql-server\" target=\"_blank\">Docker Hub</a>)",
 			"categories": [
 				"database"
 			],
@@ -62,6 +87,41 @@
 				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
 			},
 			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/_/microsoft-mssql-server)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour"
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
 				{
 					"name": "ACCEPT_EULA",
 					"default": "Y",
@@ -105,7 +165,7 @@
 		{
 			"type": 3,
 			"title": "SQL Server 2017",
-			"description": "Microsoft SQL Server on Linux",
+			"description": "Microsoft SQL Server on Linux (repo: <a href=\"https://hub.docker.com/_/microsoft-mssql-server\" target=\"_blank\">Docker Hub</a>)",
 			"categories": [
 				"database"
 			],
