@@ -3,7 +3,7 @@ services:
   nginx-proxy-manager:
     container_name: nginx_${INSTANCE}
     image: jc21/nginx-proxy-manager:${VERSION}
-    restart: always
+    restart: ${RESTART}
     ports:
       - '80:80/tcp'
       - '443:443/tcp'
@@ -16,8 +16,8 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - /_node/stacks/nginx-manager/${INSTANCE}/data:/data:rw
-      - /_node/stacks/nginx-manager/${INSTANCE}/letsencrypt:/etc/letsencrypt:rw
+      - /_node/stacks/nginx-proxy-manager/${INSTANCE}/data:/data:rw
+      - /_node/stacks/nginx-proxy-manager/${INSTANCE}/letsencrypt:/etc/letsencrypt:rw
 networks:
   default:
     external: true
