@@ -9,11 +9,15 @@ services:
       - '443:443/tcp'
       - '81:81/tcp'
     environment:
+      PUID: 1000
+      PGID: 100
       DB_SQLITE_FILE: "/data/database.sqlite"
       DISABLE_IPV6: ${DISABLE_IPV6}
     volumes:
-      - /_node/stacks/nginx-manager/${INSTANCE}/data:/data
-      - /_node/stacks/nginx-manager/${INSTANCE}/letsencrypt:/etc/letsencrypt
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /_node/stacks/nginx-manager/${INSTANCE}/data:/data:rw
+      - /_node/stacks/nginx-manager/${INSTANCE}/letsencrypt:/etc/letsencrypt:rw
 networks:
   default:
     external: true
