@@ -33,7 +33,7 @@
 				{
 					"name": "RESTART",
 					"label": "Container Restart",
-					"description": "Docker Container Restart Behaviour"
+					"description": "Docker Container Restart Behaviour",
 					"select": [
 						{
 							"text": "Always",
@@ -57,7 +57,7 @@
 				{
 					"name": "DISABLE_IPV6",
 					"label": "IPv6",
-					"description": "NGINX IPv6 Support"
+					"description": "NGINX IPv6 Support",
 					"select": [
 						{
 							"text": "Disabled",
@@ -74,7 +74,7 @@
 		},
 		{
 			"type": 3,
-			"title": "SQL Server 2019",
+			"title": "SQL Server",
 			"description": "Microsoft SQL Server on Linux (repo: <a href=\"https://hub.docker.com/_/microsoft-mssql-server\" target=\"_blank\">Docker Hub</a>)",
 			"categories": [
 				"database"
@@ -83,7 +83,7 @@
 			"note": "With the deployment of this Stack you accepts the <a href=\"http://go.microsoft.com/fwlink/?LinkId=746388\" target=\"_blank\">The Microsoft SQL Server End-User License Agreement (EULA)</a>! Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols. DO NOT USE THE DEFAULT PASSWORD!",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
 			"repository": {
-				"stackfile": "stacks/mssql/2019/docker-stack.yml",
+				"stackfile": "stacks/mssql/docker-stack.yml",
 				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
 			},
 			"env": [
@@ -101,7 +101,7 @@
 				{
 					"name": "RESTART",
 					"label": "Container Restart",
-					"description": "Docker Container Restart Behaviour"
+					"description": "Docker Container Restart Behaviour",
 					"select": [
 						{
 							"text": "Always",
@@ -157,62 +157,7 @@
 				},
 				{
 					"name": "SA_PASSWORD",
-					"default": "#SQL#2019#",
-					"label": "SA password"
-				}
-			]
-		},
-		{
-			"type": 3,
-			"title": "SQL Server 2017",
-			"description": "Microsoft SQL Server on Linux (repo: <a href=\"https://hub.docker.com/_/microsoft-mssql-server\" target=\"_blank\">Docker Hub</a>)",
-			"categories": [
-				"database"
-			],
-			"platform": "linux",
-			"note": "With the deployment of this Stack you accepts the <a href=\"http://go.microsoft.com/fwlink/?LinkId=746388\" target=\"_blank\">The Microsoft SQL Server End-User License Agreement (EULA)</a>! Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols. DO NOT USE THE DEFAULT PASSWORD!",
-      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
-			"repository": {
-				"stackfile": "stacks/mssql/2017/docker-stack.yml",
-				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
-			},
-			"env": [
-				{
-					"name": "ACCEPT_EULA",
-					"default": "Y",
-					"preset": true
-				},
-				{
-					"name": "MSSQL_PID",
-					"label": "Edition (PID)",
-					"description": "Product ID (PID) or Edition that the container will run with",
-					"select": [
-						{
-							"text": "Developer Edition",
-							"value": "Developer",
-							"default": true
-						},
-						{
-							"text": "Express Edition",
-							"value": "Express"
-						},
-						{
-							"text": "Standard Edition",
-							"value": "Standard"
-						},
-						{
-							"text": "Enterprise Edition",
-							"value": "Enterprise"
-						},
-						{
-							"text": "Enterprise Edition Core",
-							"value": "EnterpriseCore"
-						}
-					]
-				},
-				{
-					"name": "SA_PASSWORD",
-					"default": "#SQL#2017#",
+					"default": "#SQL#20x#",
 					"label": "SA password"
 				}
 			]
