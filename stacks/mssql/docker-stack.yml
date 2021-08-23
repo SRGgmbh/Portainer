@@ -15,7 +15,7 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - /_node/stacks/mssql/${INSTANCE}/data:/var/opt/mssql/:rw
+      - /_node/stacks/mssql/${INSTANCE}/data:/var/opt/mssql:rw
 networks:
   default:
     external: true
