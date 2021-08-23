@@ -1,1 +1,20 @@
-
+version: '3'
+services:
+  nginx-proxy-manager:
+    container_name: nginx_${INSTANCE}
+    image: jc21/nginx-proxy-manager:${VERSION}
+    restart: always
+    ports:
+      - '80:80/tcp'
+      - '443:443/tcp'
+      - '81:81/tcp'
+    environment:
+      DB_SQLITE_FILE: "/data/database.sqlite"
+      DISABLE_IPV6: ${DISABLE_IPV6}
+    volumes:
+      - /_node/stacks/nginx-manager/${INSTANCE}/data:/data
+      - /_node/stacks/nginx-manager/${INSTANCE}/letsencrypt:/etc/letsencrypt
+networks:
+  default:
+    external: true
+    name: node-network
