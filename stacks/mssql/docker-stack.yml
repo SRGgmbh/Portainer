@@ -1,1 +1,22 @@
-
+version: '3'
+services:
+  nginx-proxy-manager:
+    container_name: mssql_${INSTANCE}
+    image: mcr.microsoft.com/mssql/server:${VERSION}
+    restart: ${RESTART}
+    ports:
+      - '${PORT}:1433/tcp'
+    environment:
+      PUID: 1000
+      PGID: 100
+      ACCEPT_EULA: ${ACCEPT_EULA}
+      MSSQL_PID: ${MSSQL_PID}
+      SA_PASSWORD: ${SA_PASSWORD}
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /_node/stacks/mssql/${INSTANCE}/data:/var/opt/mssql/:rw
+networks:
+  default:
+    external: true
+    name: node-network
