@@ -123,6 +123,11 @@
 					]
 				},
 				{
+					"name": "PORT",
+					"label": "Port",
+					"description": "SQL Server listening Port"
+				},
+				{
 					"name": "ACCEPT_EULA",
 					"default": "Y",
 					"preset": true
