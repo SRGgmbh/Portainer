@@ -80,7 +80,7 @@
 				"database"
 			],
 			"platform": "linux",
-			"note": "With the deployment of this Stack you accepts the <a href=\"http://go.microsoft.com/fwlink/?LinkId=746388\" target=\"_blank\">The Microsoft SQL Server End-User License Agreement (EULA)</a>! Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols (repo: <a href=\"https://hub.docker.com/_/microsoft-mssql-server\" target=\"_blank\">Docker Hub</a>). DO NOT USE THE DEFAULT PASSWORD!",
+			"note": "With the deployment of this Stack you accepts the <a href=\"http://go.microsoft.com/fwlink/?LinkId=746388\" target=\"_blank\">The Microsoft SQL Server End-User License Agreement (EULA)</a>! Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols (repo: <a href=\"https://hub.docker.com/_/microsoft-mssql-server\" target=\"_blank\">Docker Hub</a>). <ul><li>DO NOT USE THE DEFAULT PASSWORD!</li><li>DO NOT USE ON PUBLIC NODES!</li></ul>",
 			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
 			"repository": {
 				"stackfile": "stacks/mssql/docker-stack.yml",

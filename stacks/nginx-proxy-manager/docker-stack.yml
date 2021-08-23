@@ -10,7 +10,7 @@ services:
       - '81:81/tcp'
     environment:
       PUID: 1000
-      PGID: 100
+      PGID: 1000
       DB_SQLITE_FILE: "/data/database.sqlite"
       DISABLE_IPV6: ${DISABLE_IPV6}
     volumes:

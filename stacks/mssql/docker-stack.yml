@@ -8,7 +8,7 @@ services:
       - '${PORT}:1433/tcp'
     environment:
       PUID: 1000
-      PGID: 100
+      PGID: 1000
       ACCEPT_EULA: ${ACCEPT_EULA}
       MSSQL_PID: ${MSSQL_PID}
       SA_PASSWORD: ${SA_PASSWORD}
