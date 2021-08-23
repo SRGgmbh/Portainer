@@ -4,18 +4,19 @@ services:
     container_name: mssql_${INSTANCE}
     image: mcr.microsoft.com/mssql/server:${VERSION}
     restart: ${RESTART}
+    user: root
     ports:
       - '${MSSQL_PORT}:1433/tcp'
     environment:
-      PUID: 1000
-      PGID: 1000
       ACCEPT_EULA: ${ACCEPT_EULA}
       MSSQL_PID: ${MSSQL_PID}
       SA_PASSWORD: ${SA_PASSWORD}
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - /_node/stacks/mssql/${INSTANCE}/data:/var/opt/mssql:rw
+      - /_node/stacks/mssql/${INSTANCE}/data:/var/opt/mssql/data:rw
+      - /_node/stacks/mssql/${INSTANCE}/log:/var/opt/mssql/log:rw
+      - /_node/stacks/mssql/${INSTANCE}/secrets:/var/opt/mssql/secrets:rw
 networks:
   default:
     external: true

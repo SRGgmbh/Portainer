@@ -96,7 +96,7 @@
 					"name": "VERSION",
 					"label": "Image Version",
 					"description": "Repository Version (see: https://hub.docker.com/_/microsoft-mssql-server)",
-					"default": "latest"
+					"default": "2019-latest"
 				},
 				{
 					"name": "RESTART",
