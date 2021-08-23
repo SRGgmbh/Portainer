@@ -5,7 +5,7 @@ services:
     image: mcr.microsoft.com/mssql/server:${VERSION}
     restart: ${RESTART}
     ports:
-      - '${PORT}:1433/tcp'
+      - '${MSSQL_PORT}:1433/tcp'
     environment:
       PUID: 1000
       PGID: 1000
