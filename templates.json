@@ -1,1 +1,161 @@
-
+{
+	"version": "2",
+	"_comment": "customized copy of original portainer template file",
+	"_source": "https://raw.githubusercontent.com/portainer/templates/master/templates-2.0.json",
+	"_git": "https://github.com/SRGgmbh/Portainer.git",
+	"templates": [
+		{
+			"type": 3,
+			"title": "NGINX Proxy Manager",
+			"description": "NGINX Proxy Manager. ALREADY INCLUDED IN NODE SETUP",
+			"categories": [
+				"webserver"
+			],
+      "platform": "linux",
+      "note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://nginxproxymanager.com\" target=\"_blank\">NGINX Proxy Manager documentation</a> for further configuration.",
+      "logo": "https://nginxproxymanager.com/icon.png",
+			"repository": {
+				"stackfile": "stacks/nginx-proxy-manager/docker-stack.yml",
+				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "INSTANCE",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"default": "latest",
+					"name": "VERSION",
+					"label": "VERSION",
+					"description": "Repository Version (see: https://hub.docker.com/r/jc21/nginx-proxy-manager)"
+				},
+				{
+					"name": "DISABLE_IPV6",
+					"label": "IPv6",
+					"select": [
+						{
+							"text": "Disabled",
+							"value": "true",
+							"default": true
+						},
+						{
+							"text": "Enabled",
+							"value": "false"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "SQL Server 2019",
+			"description": "Microsoft SQL Server on Linux",
+			"categories": [
+				"database"
+			],
+			"platform": "linux",
+			"note": "With the deployment of this Stack you accepts the <a href=\"http://go.microsoft.com/fwlink/?LinkId=746388\" target=\"_blank\">The Microsoft SQL Server End-User License Agreement (EULA)</a>! Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols. DO NOT USE THE DEFAULT PASSWORD!",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+			"repository": {
+				"stackfile": "stacks/mssql/2019/docker-stack.yml",
+				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
+			},
+			"env": [
+				{
+					"name": "ACCEPT_EULA",
+					"default": "Y",
+					"preset": true
+				},
+				{
+					"name": "MSSQL_PID",
+					"label": "Edition (PID)",
+					"description": "Product ID (PID) or Edition that the container will run with",
+					"select": [
+						{
+							"text": "Developer Edition",
+							"value": "Developer",
+							"default": true
+						},
+						{
+							"text": "Express Edition",
+							"value": "Express"
+						},
+						{
+							"text": "Standard Edition",
+							"value": "Standard"
+						},
+						{
+							"text": "Enterprise Edition",
+							"value": "Enterprise"
+						},
+						{
+							"text": "Enterprise Edition Core",
+							"value": "EnterpriseCore"
+						}
+					]
+				},
+				{
+					"name": "SA_PASSWORD",
+					"default": "#SQL#2019#",
+					"label": "SA password"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "SQL Server 2017",
+			"description": "Microsoft SQL Server on Linux",
+			"categories": [
+				"database"
+			],
+			"platform": "linux",
+			"note": "With the deployment of this Stack you accepts the <a href=\"http://go.microsoft.com/fwlink/?LinkId=746388\" target=\"_blank\">The Microsoft SQL Server End-User License Agreement (EULA)</a>! Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols. DO NOT USE THE DEFAULT PASSWORD!",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+			"repository": {
+				"stackfile": "stacks/mssql/2017/docker-stack.yml",
+				"url": "https://raw.githubusercontent.com/SRGgmbh/Portainer/main"
+			},
+			"env": [
+				{
+					"name": "ACCEPT_EULA",
+					"default": "Y",
+					"preset": true
+				},
+				{
+					"name": "MSSQL_PID",
+					"label": "Edition (PID)",
+					"description": "Product ID (PID) or Edition that the container will run with",
+					"select": [
+						{
+							"text": "Developer Edition",
+							"value": "Developer",
+							"default": true
+						},
+						{
+							"text": "Express Edition",
+							"value": "Express"
+						},
+						{
+							"text": "Standard Edition",
+							"value": "Standard"
+						},
+						{
+							"text": "Enterprise Edition",
+							"value": "Enterprise"
+						},
+						{
+							"text": "Enterprise Edition Core",
+							"value": "EnterpriseCore"
+						}
+					]
+				},
+				{
+					"name": "SA_PASSWORD",
+					"default": "#SQL#2017#",
+					"label": "SA password"
+				}
+			]
+		}
+	]
+}
