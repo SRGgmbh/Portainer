@@ -6,7 +6,7 @@
 	"templates": [
 		{
 			"type": 3,
-			"title": "NGINX Proxy Manager",
+			"title": "Proxy Manager",
 			"description": "NGINX Proxy Manager. ALREADY INCLUDED IN NODE SETUP!",
 			"categories": [
 				"webserver"
