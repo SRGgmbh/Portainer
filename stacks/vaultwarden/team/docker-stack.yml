@@ -1,0 +1,84 @@
+version: '3.9'
+services:
+  vaultwarden:
+    container_name: vaultwarden_${INSTANCE}_team
+    hostname: vaultwarden_${INSTANCE}
+    image: vaultwarden/server:${VERSION}
+    restart: ${RESTART}
+    expose:
+      - 80
+      - 3012
+    environment:
+      #Instance Setup
+      WEBSOCKET_ENABLED: "true"
+      ROCKET_WORKERS: 3
+      LOG_FILE: /_node/${INSTANCE}.log
+      LOG_LEVEL: info
+      EXTENDED_LOGGING: "true"
+      #General Settings
+      DOMAIN: ${DOMAIN}
+      SENDS_ALLOWED: "true"
+      HIBP_API_KEY: ${HIBP_TOKEN}
+      USER_ATTACHMENT_LIMIT: "1024"
+      ORG_ATTACHMENT_LIMIT: "10240"
+      TRASH_AUTO_DELETE_DAYS: "30"
+      DISABLE_ICON_DOWNLOAD: "false"
+      SIGNUPS_ALLOWED: "false"
+      SIGNUPS_VERIFY: "true"
+      SIGNUPS_VERIFY_RESEND_TIME: "6400"
+      SIGNUPS_VERIFY_RESEND_LIMIT: "3"
+      SIGNUPS_DOMAINS_WHITELIST: ""
+      ORG_CREATION_USERS: ${USERLIST}
+      INVITATIONS_ALLOWED: "false"
+      PASSWORD_ITERATIONS: "100000"
+      SHOW_PASSWORD_HINT: "false"
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+      INVITATION_ORG_NAME: "SRG - Systemhaus GmbH"
+      #Advanced Settings
+      IP_HEADER: "X-Real-IP"
+      ICON_CACHE_TTL: "2592000"
+      ICON_CACHE_NEGTTL: "259200"
+      ICON_DOWNLOAD_TIMEOUT: "10"
+      ICON_BLACKLIST_REGEX: ""
+      ICON_BLACKLIST_NON_GLOBAL_IPS: "true"
+      DISABLE_2FA_REMEMBER: "false"
+      AUTHENTICATOR_DISABLE_TIME_DRIFT: "false"
+      REQUIRE_DEVICE_EMAIL: "false"
+      LOG_TIMESTAMP_FORMAT: "%Y-%m-%d %H:%M:%S.%3f"
+      #Yubikey Settings
+      _ENABLE_YOUBICO: "false"
+      #Global Duo Settings
+      _ENABLE_DUO: "false"
+      #SMTP Email Settings
+      _ENABLE_SMTP: "true"
+      SMTP_HOST: "smtp.office365.com"
+      SMTP_SSL: "true"
+      SMTP_EXPLICIT_TLS: "false"
+      SMTP_PORT: "587"   
+      SMTP_FROM: ${O365_USERNAME}
+      SMTP_FROM_NAME: "VaultWarden @ SRG - Systemhaus GmbH"
+      SMTP_USERNAME: ${O365_USERNAME}
+      SMTP_PASSWORD: ${O365_PASSWORD}
+      SMTP_AUTH_MECHANISM: "Login"
+      SMTP_TIMEOUT: "15"
+      HELO_NAME: "Vaultwarden"
+      #Email 2FA Settings
+      _ENABLE_SMTP_2FA: "true"
+      EMAIL_TOKEN_SIZE: "6"
+      EMAIL_EXPIRATION_TIME: "900"
+      EMAIL_ATTEMPTS_LIMIT: "5"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /_node/stacks/vaultwarden/${INSTANCE}/data:/data:rw
+      - /_node/logs/stacks/vaultwarden:/_node:rw
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+      mode: global
+networks:
+  default:
+    external: true
+    name: stack-network

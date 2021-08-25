@@ -1,0 +1,71 @@
+version: '3'
+services:
+  guacd:
+    container_name: guacamole_${INSTANCE}_deamon
+    image: guacamole/guacd:${VERSION}
+    restart: ${RESTART}
+    environment:
+      GUACD_LOG_LEVEL: "info"
+    networks:
+      guacnetwork:
+    volumes:
+      - /_node/stacks/guacamole/${INSTANCE}/deamon/drive:/drive:rw
+      - /_node/stacks/guacamole/${INSTANCE}/deamon/record:/record:rw 
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+  mysql:
+    container_name: guacamole_${INSTANCE}_mysql
+    image: mysql:${MYSQL_VERSION}
+    command: --default-authentication-plugin=mysql_native_password
+    restart: ${RESTART}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: "guacamole_db"
+      MYSQL_USER: "guacamole_user"
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    networks:
+      guacnetwork:
+    volumes:
+      - /_node/stacks/guacamole/${INSTANCE}/mysql/data:/var/lib/mysql:rw
+      - /_node/stacks/guacamole/${INSTANCE}/mysql/config:/etc/mysql/conf.d:rw
+      - /_node/stacks/guacamole/${INSTANCE}/mysql/schema:/opt/guacamole/mysql/schema:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+  guacamole:
+    container_name: ${INSTANCE}_guacamole
+    image: guacamole/guacamole:${VERSION}
+    restart: ${RESTART}
+    depends_on:
+      - guacd
+      - mysql
+    environment:
+      GUACAMOLE_HOME: /etc/guacamole
+      GUACD_HOSTNAME: guacamole_${INSTANCE}_deamon
+      GUACD_PORT: 4822
+      MYSQL_DATABASE: "guacamole_db"
+      MYSQL_HOSTNAME: guacamole_${INSTANCE}_mysql
+      MYSQL_PORT: 3306
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: "guacamole_user"
+      MYSQL_USER_REQUIRED: "true"
+      MYSQL_AUTO_CREATE_ACCOUNTS: "true"
+      TOTP_ISSUER: "SRG - Systemhaus GmbH"
+    links:
+      - guacd
+      - mysql
+    networks:
+      default:
+      guacnetwork:
+    expose:
+      - 8080
+    volumes:
+      - /_node/stacks/guacamole/${INSTANCE}/ROOT.war:/usr/local/tomcat/webapps/ROOT.war:ro
+      - /_node/stacks/guacamole/${INSTANCE}/home:/etc/guacamole:rw 
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+networks:
+  default:
+    external: true
+    name: node-network
+  guacnetwork:
+    driver: bridge
