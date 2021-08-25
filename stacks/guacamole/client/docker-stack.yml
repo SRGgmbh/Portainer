@@ -1,0 +1,21 @@
+version: '3'
+services:
+  guacamole:
+    container_name: guacamole_${INSTANCE}
+    image: guacamole/guacamole:${VERSION}
+    restart: ${RESTART}
+    expose:
+      - '8080'
+    environment:
+      GUACAMOLE_HOME: /etc/guacamole
+      GUACD_HOSTNAME: ${GUACD_HOST}
+      GUACD_PORT: ${GUACD_PORT}
+    volumes:
+      - /_node/stacks/guacamole/${INSTANCE}/ROOT.war:/usr/local/tomcat/webapps/ROOT.war:ro
+      - /_node/stacks/guacamole/${INSTANCE}/home:/etc/guacamole:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+networks:
+  default:
+    external: true
+    name: node-network
