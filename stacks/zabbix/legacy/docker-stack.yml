@@ -9,6 +9,9 @@ services:
     environment:
       ZBX_HOSTNAME: ${HOSTNAME}
       ZBX_SERVER_HOST: ${SERVER}
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     privileged: true
 networks:
   default:
