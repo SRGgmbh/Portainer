@@ -6,6 +6,344 @@
 	"templates": [
 		{
 			"type": 3,
+			"title": "Vaultwarden",
+			"description": "Alternative implementation of the Bitwarden server API",
+			"categories": [
+				"security"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://github.com/dani-garcia/vaultwarden/wiki\" target=\"_blank\">Vaultwarden WIKI</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/vaultwarden/server\" target=\"_blank\">Docker Hub</a>).",
+			"logo": "https://cdn.srg.one/a/images/partner/vaultwarden.png",
+			"repository": {
+				"stackfile": "stacks/vaultwarden/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/vaultwarden/server)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "DOMAIN",
+					"label": "Vault URL",
+					"description": "the URL for this Instance (https://xxxxx)"
+				},
+				{
+					"name": "HIBP_TOKEN",
+					"label": "HIBP Token",
+					"description": "Token for Have i been Pawned API"
+				},
+				{
+					"name": "DOMAINLIST",
+					"label": "Domain Whitelist",
+					"description": "List of Domains to allow Sign Up"
+				},
+				{
+					"name": "USERLIST",
+					"label": "Organization Creators",
+					"description": "List of Users to allow Organization creation"
+				},
+				{
+					"name": "ADMIN_TOKEN",
+					"label": "Admin Token",
+					"description": "Token for Vaultwarden Admin Interface. ONLY ACCESIBLE VIA TRUSTED IPS"
+				},
+				{
+					"name": "O365_USERNAME",
+					"label": "365 User",
+					"description": "Office 365 Username for SMTP (typicaly the email address)"
+				},
+				{
+					"name": "O365_PASSWORD",
+					"label": "365 Password",
+					"description": "Office 365 Password for SMTP"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Vaultwarden (Freelancer)",
+			"description": "Alternative implementation of the Bitwarden server API.",
+			"categories": [
+				"security"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://github.com/dani-garcia/vaultwarden/wiki\" target=\"_blank\">Vaultwarden WIKI</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/vaultwarden/server\" target=\"_blank\">Docker Hub</a>).",
+			"logo": "https://cdn.srg.one/a/images/partner/vaultwarden.png",
+			"repository": {
+				"stackfile": "stacks/vaultwarden/freelancer/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/vaultwarden/server)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "DOMAIN",
+					"label": "Vault URL",
+					"description": "the URL for this Instance (https://xxxxx)"
+				},
+				{
+					"name": "HIBP_TOKEN",
+					"label": "HIBP Token",
+					"description": "Token for Have i been Pawned API"
+				},
+				{
+					"name": "USERLIST",
+					"label": "Organization Creators",
+					"description": "List of Users to allow Organization creation"
+				},
+				{
+					"name": "ADMIN_TOKEN",
+					"label": "Admin Token",
+					"description": "Token for Vaultwarden Admin Interface. ONLY ACCESIBLE VIA TRUSTED IPS"
+				},
+				{
+					"name": "O365_USERNAME",
+					"label": "365 User",
+					"description": "Office 365 Username for SMTP (typicaly the email address)"
+				},
+				{
+					"name": "O365_PASSWORD",
+					"label": "365 Password",
+					"description": "Office 365 Password for SMTP"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Vaultwarden (Team)",
+			"description": "Alternative implementation of the Bitwarden server API",
+			"categories": [
+				"security"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://github.com/dani-garcia/vaultwarden/wiki\" target=\"_blank\">Vaultwarden WIKI</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/vaultwarden/server\" target=\"_blank\">Docker Hub</a>).",
+			"logo": "https://cdn.srg.one/a/images/partner/vaultwarden.png",
+			"repository": {
+				"stackfile": "stacks/vaultwarden/team/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/vaultwarden/server)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "DOMAIN",
+					"label": "Vault URL",
+					"description": "the URL for this Instance (https://xxxxx)"
+				},
+				{
+					"name": "HIBP_TOKEN",
+					"label": "HIBP Token",
+					"description": "Token for Have i been Pawned API"
+				},
+				{
+					"name": "USERLIST",
+					"label": "Organization Creators",
+					"description": "List of Users to allow Organization creation"
+				},
+				{
+					"name": "ADMIN_TOKEN",
+					"label": "Admin Token",
+					"description": "Token for Vaultwarden Admin Interface. ONLY ACCESIBLE VIA TRUSTED IPS"
+				},
+				{
+					"name": "O365_USERNAME",
+					"label": "365 User",
+					"description": "Office 365 Username for SMTP (typicaly the email address)"
+				},
+				{
+					"name": "O365_PASSWORD",
+					"label": "365 Password",
+					"description": "Office 365 Password for SMTP"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Vaultwarden (Default)",
+			"description": "Alternative implementation of the Bitwarden server API",
+			"categories": [
+				"security"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://github.com/dani-garcia/vaultwarden/wiki\" target=\"_blank\">Vaultwarden WIKI</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/vaultwarden/server\" target=\"_blank\">Docker Hub</a>).",
+			"logo": "https://cdn.srg.one/a/images/partner/vaultwarden.png",
+			"repository": {
+				"stackfile": "stacks/vaultwarden/default/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/vaultwarden/server)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "DOMAIN",
+					"label": "Vault URL",
+					"description": "the URL for this Instance (https://xxxxx)"
+				},
+				{
+					"name": "HIBP_TOKEN",
+					"label": "HIBP Token",
+					"description": "Token for Have i been Pawned API"
+				},
+				{
+					"name": "DOMAINLIST",
+					"label": "Domain Whitelist",
+					"description": "List of Domains to allow Sign Up"
+				},
+				{
+					"name": "USERLIST",
+					"label": "Organization Creators",
+					"description": "List of Users to allow Organization creation"
+				},
+				{
+					"name": "ADMIN_TOKEN",
+					"label": "Admin Token",
+					"description": "Token for Vaultwarden Admin Interface. ONLY ACCESIBLE VIA TRUSTED IPS"
+				},
+				{
+					"name": "O365_USERNAME",
+					"label": "365 User",
+					"description": "Office 365 Username for SMTP (typicaly the email address)"
+				},
+				{
+					"name": "O365_PASSWORD",
+					"label": "365 Password",
+					"description": "Office 365 Password for SMTP"
+				}
+			]
+		},
+		{
+			"type": 3,
 			"title": "Proxy Manager",
 			"description": "NGINX Proxy Manager. ALREADY INCLUDED IN NODE SETUP!",
 			"categories": [
