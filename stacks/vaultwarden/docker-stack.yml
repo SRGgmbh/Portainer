@@ -11,8 +11,8 @@ services:
       #Instance Setup
       WEBSOCKET_ENABLED: "true"
       ROCKET_WORKERS: 10
-      LOG_FILE: /_node/logs/vaultwarden/${INSTANCE}.log
-      LOG_LEVEL: warn
+      LOG_FILE: /_node/${INSTANCE}.log
+      LOG_LEVEL: info
       EXTENDED_LOGGING: "true"
       #General Settings
       DOMAIN: ${DOMAIN}
@@ -67,7 +67,10 @@ services:
       EMAIL_EXPIRATION_TIME: "900"
       EMAIL_ATTEMPTS_LIMIT: "5"
     volumes:
-      - /_node/stacks/vaultwarden/${INSTANCE}/data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /_node/stacks/vaultwarden/${INSTANCE}/data:/data:rw
+      - /_node/logs/stacks/vaultwarden:/_node:rw
 networks:
   default:
     external: true
