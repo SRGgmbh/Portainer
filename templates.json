@@ -74,6 +74,213 @@
 		},
 		{
 			"type": 3,
+			"title": "Zabbix Agent",
+			"description": "Zabbix is the ultimate enterprise-level software designed for real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines and network devices. ALREADY INCLUDED IN NODE SETUP!",
+			"categories": [
+				"monitoring"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://www.zabbix.com/manuals\" target=\"_blank\">Zabbix documentation</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/zabbix/zabbix-agent2\" target=\"_blank\">Docker Hub</a>).",
+			"logo": "https://www.portainer.io/hubfs/Brand%20Assets/Favicon/Portainer%20BE%20Favicon%20icon.svg",
+			"repository": {
+				"stackfile": "stacks/zabbix/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/zabbix/zabbix-agent2)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "HOSTNAME",
+					"label": "Hostname",
+					"description": "Hostname for this Agent in Zabbix Server (typicaly the IP)"
+				},
+				{
+					"name": "SERVER",
+					"label": "Server",
+  					"description": "Zabbix Server IP"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Zabbix Agent (Legacy)",
+			"description": "Zabbix is the ultimate enterprise-level software designed for real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines and network devices. LEGACY AGENT!",
+			"categories": [
+				"monitoring"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://www.zabbix.com/manuals\" target=\"_blank\">Zabbix documentation</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/zabbix/zabbix-agent\" target=\"_blank\">Docker Hub</a>).",
+			"logo": "https://www.portainer.io/hubfs/Brand%20Assets/Favicon/Portainer%20BE%20Favicon%20icon.svg",
+			"repository": {
+				"stackfile": "stacks/zabbix/legacy/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/zabbix/zabbix-agent)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "HOSTNAME",
+					"label": "Hostname",
+					"description": "Hostname for this Agent in Zabbix Server (typicaly the IP)"
+				},
+				{
+					"name": "SERVER",
+					"label": "Server",
+  					"description": "Zabbix Server IP"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Zabbix Proxy",
+			"description": "Zabbix is the ultimate enterprise-level software designed for real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines and network devices. ALREADY INCLUDED IN NODE SETUP!",
+			"categories": [
+				"monitoring"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://www.zabbix.com/manuals\" target=\"_blank\">Zabbix documentation</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/zabbix/zabbix-proxy-sqlite3\" target=\"_blank\">Docker Hub</a>).",
+			"logo": "https://www.portainer.io/hubfs/Brand%20Assets/Favicon/Portainer%20BE%20Favicon%20icon.svg",
+			"repository": {
+				"stackfile": "stacks/zabbix/proxy/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/zabbix/zabbix-proxy-sqlite3)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "PROXYMODE",
+					"label": "Proxy Mode",
+					"description": "Passiv (Server connects to proxy) / Active (Proxy connects to server)",
+					"select": [
+						{
+							"text": "Passiv",
+							"value": "1",
+							"default": true
+						},
+						{
+							"text": "Active",
+							"value": "0"
+						}
+					]
+				},
+				{
+					"name": "MODULES",
+					"label": "Modules",
+					"description": "The variable is list of comma separated loadable Zabbix modules"
+				},
+				{
+					"name": "HOSTNAME",
+					"label": "Hostname",
+					"description": "Hostname for this agent in zabbix server (typicaly the IP)"
+				},
+				{
+					"name": "SERVER",
+					"label": "Server",
+  					"description": "Zabbix server IP"
+				}
+			]
+		},
+		{
+			"type": 3,
 			"title": "SQL Server",
 			"description": "Microsoft SQL Server on Linux",
 			"categories": [

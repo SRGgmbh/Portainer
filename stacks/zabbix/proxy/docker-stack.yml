@@ -10,6 +10,7 @@ services:
       ZBX_PROXYMODE: ${PROXYMODE}
       ZBX_HOSTNAME: ${HOSTNAME}
       ZBX_SERVER_HOST: ${SERVER}
+      ZBX_LOADMODULE: ${MODULES}
     volumes:
       - /_node/stacks/zabbix/${INSTANCE}/data:/var/lib/zabbix/db_data:rw
       - /_node/stacks/zabbix/${INSTANCE}/scripts:/usr/lib/zabbix/externalscripts:rw
