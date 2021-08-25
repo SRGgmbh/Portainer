@@ -1,0 +1,34 @@
+version: '3'
+services:
+  guacd:
+    container_name: guacamole_${INSTANCE}_deamon
+    image: guacamole/guacd:${VERSION}
+    restart: ${RESTART}
+    expose:
+      - '4822'
+    environment:
+      GUACD_LOG_LEVEL: "info"
+    volumes:
+      - /_node/stacks/guacamole/${INSTANCE}/deamon/drive:/drive:rw
+      - /_node/stacks/guacamole/${INSTANCE}/deamon/record:/record:rw 
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro 
+  guacamole:
+    container_name: guacamole_${INSTANCE}
+    image: guacamole/guacamole:${VERSION}
+    restart: ${RESTART}
+    expose:
+      - '8080'
+    environment:
+      GUACAMOLE_HOME: /etc/guacamole
+      GUACD_HOSTNAME: guacamole_${INSTANCE}_deamon
+      GUACD_PORT: 4822
+    volumes:
+      - /_node/stacks/guacamole/${INSTANCE}/ROOT.war:/usr/local/tomcat/webapps/ROOT.war:ro
+      - /_node/stacks/guacamole/${INSTANCE}/home:/etc/guacamole:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+networks:
+  default:
+    external: true
+    name: node-network
