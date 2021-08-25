@@ -2,7 +2,7 @@ version: '3'
 services:
   zabbix-agent:
     container_name: zabbix_agent_${INSTANCE}
-    image: zabbix/zabbix-agent:${VERSION}
+    image: zabbix/zabbix-agent2:${VERSION}
     restart: ${RESTART}
     ports:
       - '10050:10050/tcp'
