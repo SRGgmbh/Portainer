@@ -67,12 +67,12 @@
 				{
 					"name": "DOMAINLIST",
 					"label": "Domain Whitelist",
-					"description": "List of Domains to allow Sign Up"
+					"description": "allowed domains for signup, comma seperated listp"
 				},
 				{
 					"name": "USERLIST",
 					"label": "Organization Creators",
-					"description": "List of Users to allow Organization creation"
+					"description": "user who can create organizations, comma seperated list"
 				},
 				{
 					"name": "ADMIN_TOKEN",
@@ -154,7 +154,7 @@
 				{
 					"name": "USERLIST",
 					"label": "Organization Creators",
-					"description": "List of Users to allow Organization creation"
+					"description": "user who can create organizations, comma seperated list"
 				},
 				{
 					"name": "ADMIN_TOKEN",
@@ -236,7 +236,7 @@
 				{
 					"name": "USERLIST",
 					"label": "Organization Creators",
-					"description": "List of Users to allow Organization creation"
+					"description": "user who can create organizations, comma seperated list"
 				},
 				{
 					"name": "ADMIN_TOKEN",
@@ -318,12 +318,12 @@
 				{
 					"name": "DOMAINLIST",
 					"label": "Domain Whitelist",
-					"description": "List of Domains to allow Sign Up"
+					"description": "allowed domains for signup, comma seperated list"
 				},
 				{
 					"name": "USERLIST",
 					"label": "Organization Creators",
-					"description": "List of Users to allow Organization creation"
+					"description": "user who can create organizations, comma seperated list"
 				},
 				{
 					"name": "ADMIN_TOKEN",
@@ -339,6 +339,240 @@
 					"name": "O365_PASSWORD",
 					"label": "365 Password",
 					"description": "Office 365 Password for SMTP"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Guacamole (Standalone)",
+			"description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. STANDALONE STACK (deamon, client and database).",
+			"categories": [
+				"serverless"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://guacamole.apache.org/\" target=\"_blank\">Guacamole Project</a> for further configuration (repo: <a href=\"https://hub.docker.com/u/guacamole\" target=\"_blank\">Docker Hub</a>).<br/>Initial Setup after Stack deployment:<ul><li>Upload customized [ROOT.war] in [/_node/stacks/guacamole/${INSTANCE}] volume</li><li>Upload corresponding database Schema in [/_node/stacks/guacamole/${INSTANCE}/mysql/schema] volume</li><li>Initialize Database Schema via Container Bash (cat /opt/guacamole/mysql/schema/*.sql | mysql -u root -p guacamole_db)</li><li>Setup Reverse Proxy with SSL for [http://guacamole_${INSTANCE}:8080], initial Credentials: guacadmin/guacadmin</li><li>[OPTIONAL] Upload Guacamole additional extensions (i.e. TOTP, AD-HOC ..) in [/_node/stacks/guacamole/${INSTANCE}/home/extensions]</li></ul>",
+			"logo": "https://guacamole.apache.org/images/guacamole-logo-64.png",
+			"repository": {
+				"stackfile": "stacks/guacamole/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/u/guacamole)",
+					"default": "latest"
+				},
+				{
+					"name": "MYSQL_VERSION",
+					"label": "MySQL Version",
+					"description": "Repository Version (see: https://hub.docker.com/_/mysql)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "MYSQL_PASSWORD",
+					"label": "MySQL Password",
+					"description": "the password for the mysql root user"
+				},
+				{
+					"name": "DB_PASSWORD",
+					"label": "DB Password",
+					"description": "the password for the mysql guacamole user"
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Guacamole",
+ 			"description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. HA STACK (deamon and client).",
+			"categories": [
+				"serverless"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://guacamole.apache.org/\" target=\"_blank\">Guacamole Project</a> for further configuration (repo: <a href=\"https://hub.docker.com/u/guacamole\" target=\"_blank\">Docker Hub</a>).<br/>Initial Setup after Stack deployment:<ul><li>Upload customized [ROOT.war] in [/_node/stacks/guacamole/${INSTANCE}] volume</li><li>Upload customized [guacamole.properties] in [/_node/stacks/guacamole/${INSTANCE}/home] volume</li><li>Upload SQL Server JDBC Driver in [/_node/stacks/guacamole/${INSTANCE}/home/lib] volume</li><li>Upload SQL Server, OpenID Extensions in [/_node/stacks/guacamole/${INSTANCE}/home/extensions] volume, rename extensions to load extensions in needed order(000-...,001-...)</li><li>Setup Reverse Proxy with SSL for [http://guacamole_${INSTANCE}:8080], use Cloudflare ACL and Origin-Certificate</li><li>[OPTIONAL] Upload Guacamole additional extensions (i.e. TOTP, AD-HOC ..) in [/_node/stacks/guacamole/${INSTANCE}/home/extensions]</li></ul>",
+			"logo": "https://guacamole.apache.org/images/guacamole-logo-64.png",
+			"repository": {
+				"stackfile": "stacks/guacamole/node/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/u/guacamole)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Guacamole (Deamon)",
+ 			"description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. HA STACK (deamon).",
+			"categories": [
+				"serverless"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://guacamole.apache.org/\" target=\"_blank\">Guacamole Project</a> for further configuration (repo: <a href=\"https://hub.docker.com/u/guacamole\" target=\"_blank\">Docker Hub</a>).<br/>Initial Setup after Stack deployment:<ul><li>Setup Reverse Proxy with SSL for [http://guacamole_${INSTANCE}_deamon:4822] redirect from <a href=\"https://blog.cloudflare.com/cloudflare-now-supporting-more-ports/\" target=\"_blank\">Cloudflare additional Ports</a>, use Cloudflare ACL and Origin-Certificate</li></ul>",
+			"logo": "https://guacamole.apache.org/images/guacamole-logo-64.png",
+			"repository": {
+				"stackfile": "stacks/guacamole/deamon/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/u/guacamole)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": 3,
+			"title": "Guacamole (Client)",
+ 			"description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH. HA STACK (client).",
+			"categories": [
+				"serverless"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://guacamole.apache.org/\" target=\"_blank\">Guacamole Project</a> for further configuration (repo: <a href=\"https://hub.docker.com/u/guacamole\" target=\"_blank\">Docker Hub</a>).<br/>Initial Setup after Stack deployment:<ul><li>Upload customized [ROOT.war] in [/_node/stacks/guacamole/${INSTANCE}] volume</li><li>Upload customized [guacamole.properties] in [/_node/stacks/guacamole/${INSTANCE}/home] volume</li><li>Upload SQL Server JDBC Driver in [/_node/stacks/guacamole/${INSTANCE}/home/lib] volume</li><li>Upload SQL Server, OpenID Extensions in [/_node/stacks/guacamole/${INSTANCE}/home/extensions] volume, rename extensions to load extensions in needed order(000-...,001-...)</li><li>Setup Reverse Proxy with SSL for [http://guacamole_${INSTANCE}:8080], use Cloudflare ACL and Origin-Certificate</li><li>[OPTIONAL] Upload Guacamole additional extensions (i.e. TOTP, AD-HOC ..) in [/_node/stacks/guacamole/${INSTANCE}/home/extensions]</li></ul>",
+			"logo": "https://guacamole.apache.org/images/guacamole-logo-64.png",
+			"repository": {
+				"stackfile": "stacks/guacamole/client/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/u/guacamole)",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "GUACD_HOST",
+					"label": "Deamon Host",
+					"description": "Default deamon host for this clinet"
+				},
+				{
+					"name": "GUACD_PORT",
+					"label": "Deamon Port",
+					"description": "Port of default deamon host"
 				}
 			]
 		},
@@ -419,7 +653,7 @@
 			],
 			"platform": "linux",
 			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://www.zabbix.com/manuals\" target=\"_blank\">Zabbix documentation</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/zabbix/zabbix-agent2\" target=\"_blank\">Docker Hub</a>).",
-			"logo": "https://www.portainer.io/hubfs/Brand%20Assets/Favicon/Portainer%20BE%20Favicon%20icon.svg",
+			"logo": "https://secure.gravatar.com/avatar/80546ec7b550e478c2333bef451ae888.jpg?s=80&r=g&d=mm",
 			"repository": {
 				"stackfile": "stacks/zabbix/docker-stack.yml",
 				"url": "https://github.com/SRGgmbh/Portainer"
@@ -481,7 +715,7 @@
 			],
 			"platform": "linux",
 			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://www.zabbix.com/manuals\" target=\"_blank\">Zabbix documentation</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/zabbix/zabbix-agent\" target=\"_blank\">Docker Hub</a>).",
-			"logo": "https://www.portainer.io/hubfs/Brand%20Assets/Favicon/Portainer%20BE%20Favicon%20icon.svg",
+			"logo": "https://secure.gravatar.com/avatar/80546ec7b550e478c2333bef451ae888.jpg?s=80&r=g&d=mm",
 			"repository": {
 				"stackfile": "stacks/zabbix/legacy/docker-stack.yml",
 				"url": "https://github.com/SRGgmbh/Portainer"
@@ -537,13 +771,13 @@
 		{
 			"type": 3,
 			"title": "Zabbix Proxy",
-			"description": "Zabbix is the ultimate enterprise-level software designed for real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines and network devices. ALREADY INCLUDED IN NODE SETUP!",
+			"description": "Zabbix is the ultimate enterprise-level software designed for real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines and network devices.",
 			"categories": [
 				"monitoring"
 			],
 			"platform": "linux",
 			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://www.zabbix.com/manuals\" target=\"_blank\">Zabbix documentation</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/zabbix/zabbix-proxy-sqlite3\" target=\"_blank\">Docker Hub</a>).",
-			"logo": "https://www.portainer.io/hubfs/Brand%20Assets/Favicon/Portainer%20BE%20Favicon%20icon.svg",
+			"logo": "https://secure.gravatar.com/avatar/80546ec7b550e478c2333bef451ae888.jpg?s=80&r=g&d=mm",
 			"repository": {
 				"stackfile": "stacks/zabbix/proxy/docker-stack.yml",
 				"url": "https://github.com/SRGgmbh/Portainer"
