@@ -74,4 +74,4 @@ services:
 networks:
   default:
     external: true
-    name: stack-network
+    name: node-network
