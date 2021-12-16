@@ -770,6 +770,95 @@
 		},
 		{
 			"type": 3,
+			"title": "OwnCloud",
+			"description": "Official OwnCloud Docker image.",
+			"categories": [
+				"collaboration"
+			],
+			"platform": "linux",
+			"note": "INSTANCE must be unique on every Portainer Node!, please refer to <a href=\"https://doc.owncloud.com/server/10.8/\" target=\"_blank\">OwnCloud WIKI</a> for further configuration (repo: <a href=\"https://hub.docker.com/r/owncloud/server\" target=\"_blank\">Docker Hub</a>).",
+			"logo": "https://owncloud.com/wp-content/themes/ownCloud/dist/assets/img/favicon/apple-touch-icon.png",
+			"repository": {
+				"stackfile": "stacks/owncloud/docker-stack.yml",
+				"url": "https://github.com/SRGgmbh/Portainer"
+			},
+			"env": [
+				{
+					"name": "INSTANCE",
+					"label": "Instance ID",
+					"description": "Container Instance Name (used for Hostname and Volume binding)"
+				},
+				{
+					"name": "VERSION",
+					"label": "Image Version",
+					"description": "Repository Version (see: https://hub.docker.com/r/owncloud/server)",
+					"default": "latest"
+				},
+				{
+					"name": "DB_VERSION",
+					"label": "Database Version",
+					"description": "Repository Version (see: https://hub.docker.com/_/mariadb) [recomended: 10.5]",
+					"default": "latest"
+				},
+				{
+					"name": "CACHE_VERSION",
+					"label": "Cache Version",
+					"description": "Repository Version (see: https://hub.docker.com/_/redis) [recomended: 6]",
+					"default": "latest"
+				},
+				{
+					"name": "RESTART",
+					"label": "Container Restart",
+					"description": "Docker Container Restart Behaviour",
+					"select": [
+						{
+							"text": "Always",
+							"value": "always",
+							"default": true
+						},
+						{
+							"text": "On-Failure",
+							"value": "on-failure"
+						},
+						{
+							"text": "Unless-Stopped",
+							"value": "unless-stopped"
+						},
+						{
+							"text": "No",
+							"value": "no"
+						}
+					]
+				},
+				{
+					"name": "DOMAIN",
+					"label": "OwnCloud URL",
+					"description": "the URL for this Instance (https://xxxxx)"
+				},
+				{
+					"name": "ADMIN_USERNAME",
+					"label": "Admin Username",
+					"description": "Username of OwnCloud Administrator"
+				},
+				{
+					"name": "ADMIN_PASSWORD",
+					"label": "Admin Password",
+					"description": "Password of OwnCloud Administrator"
+				},
+				{
+					"name": "DB_SERVER_PASSWORD",
+					"label": "Server Password",
+					"description": "Password of Database Server"
+				},
+				{
+					"name": "DB_PASSWORD",
+					"label": "Database Password",
+					"description": "Password of OwnCloud Database"
+				}
+			]
+		},
+		{
+			"type": 3,
 			"title": "Zabbix Proxy",
 			"description": "Zabbix is the ultimate enterprise-level software designed for real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines and network devices.",
 			"categories": [
