@@ -881,13 +881,13 @@
 					"name": "DB_VERSION",
 					"label": "Database Version",
 					"description": "Repository Version (see: https://hub.docker.com/_/mariadb) [recomended: 10.5]",
-					"default": "latest"
+					"default": "10.5"
 				},
 				{
 					"name": "CACHE_VERSION",
 					"label": "Cache Version",
 					"description": "Repository Version (see: https://hub.docker.com/_/redis) [recomended: 6]",
-					"default": "latest"
+					"default": "6"
 				},
 				{
 					"name": "RESTART",
@@ -931,12 +931,14 @@
 				{
 					"name": "DB_SERVER_PASSWORD",
 					"label": "Server Password",
-					"description": "Password of Database Server"
+					"description": "Password of Database Server",
+					"default": "owncloud"
 				},
 				{
 					"name": "DB_PASSWORD",
 					"label": "Database Password",
-					"description": "Password of OwnCloud Database"
+					"description": "Password of OwnCloud Database",
+					"default": "owncloud"
 				}
 			]
 		},
