@@ -10,7 +10,7 @@ services:
       - mariadb
       - redis
     environment:
-      - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}
+      - OWNCLOUD_DOMAIN=${DOMAIN}
       - OWNCLOUD_DB_TYPE=mysql
       - OWNCLOUD_DB_NAME=owncloud
       - OWNCLOUD_DB_USERNAME=owncloud
@@ -35,7 +35,7 @@ services:
       ocnetwork:
       
   mariadb:
-    image: mariadb:${DB_VERSION} #10.5
+    image: mariadb:${DB_VERSION}
     container_name: owncloud_${INSTANCE}_mariadb
     restart: ${RESTART}
     environment:
@@ -57,7 +57,7 @@ services:
       ocnetwork:
 
   redis:
-    image: redis:${CACHE_VERSION} #6
+    image: redis:${CACHE_VERSION}
     container_name: owncloud_${INSTANCE}_redis
     restart: ${RESTART}
     command: ["--databases", "1"]
