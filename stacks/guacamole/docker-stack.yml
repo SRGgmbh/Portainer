@@ -9,8 +9,8 @@ services:
     networks:
       guacnetwork:
     volumes:
-      - /_node/stacks/guacamole/${INSTANCE}/deamon/drive:/drive:rw
-      - /_node/stacks/guacamole/${INSTANCE}/deamon/record:/record:rw 
+      - /var/node/stacks/guacamole/${INSTANCE}/deamon/drive:/drive:rw
+      - /var/node/stacks/guacamole/${INSTANCE}/deamon/record:/record:rw 
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
   mysql:
@@ -26,9 +26,9 @@ services:
     networks:
       guacnetwork:
     volumes:
-      - /_node/stacks/guacamole/${INSTANCE}/mysql/data:/var/lib/mysql:rw
-      - /_node/stacks/guacamole/${INSTANCE}/mysql/config:/etc/mysql/conf.d:rw
-      - /_node/stacks/guacamole/${INSTANCE}/mysql/schema:/opt/guacamole/mysql/schema:ro
+      - /var/node/stacks/guacamole/${INSTANCE}/mysql/data:/var/lib/mysql:rw
+      - /var/node/stacks/guacamole/${INSTANCE}/mysql/config:/etc/mysql/conf.d:rw
+      - /var/node/stacks/guacamole/${INSTANCE}/mysql/schema:/opt/guacamole/mysql/schema:ro
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
   guacamole:
@@ -59,8 +59,8 @@ services:
     expose:
       - 8080
     volumes:
-      - /_node/stacks/guacamole/${INSTANCE}/ROOT.war:/usr/local/tomcat/webapps/ROOT.war:ro
-      - /_node/stacks/guacamole/${INSTANCE}/home:/etc/guacamole:rw 
+      - /var/node/stacks/guacamole/${INSTANCE}/ROOT.war:/usr/local/tomcat/webapps/ROOT.war:ro
+      - /var/node/stacks/guacamole/${INSTANCE}/home:/etc/guacamole:rw 
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 networks:
