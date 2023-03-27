@@ -69,8 +69,8 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - /_node/stacks/vaultwarden/${INSTANCE}/data:/data:rw
-      - /_node/logs/stacks/vaultwarden:/_node:rw
+      - /var/node/stacks/vaultwarden/${INSTANCE}/data:/data:rw
+      - /var/node/logs/stacks/vaultwarden:/_node:rw
 networks:
   default:
     external: true
