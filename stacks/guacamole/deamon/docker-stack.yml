@@ -9,8 +9,8 @@ services:
     environment:
       GUACD_LOG_LEVEL: "info"
     volumes:
-      - /_node/stacks/guacamole/${INSTANCE}/deamon/drive:/drive:rw
-      - /_node/stacks/guacamole/${INSTANCE}/deamon/record:/record:rw 
+      - /var/node/stacks/guacamole/${INSTANCE}/deamon/drive:/drive:rw
+      - /var/node/stacks/guacamole/${INSTANCE}/deamon/record:/record:rw 
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 networks:
