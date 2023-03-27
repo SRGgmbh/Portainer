@@ -27,7 +27,7 @@ services:
       timeout: 10s
       retries: 5
     volumes:
-      - /_node/stacks/owncloud/${INSTANCE}/data:/mnt/data:rw
+      - /var/node/stacks/owncloud/${INSTANCE}/data:/mnt/data:rw
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     networks:
@@ -50,7 +50,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - /_node/stacks/owncloud/${INSTANCE}/mysql:/var/lib/mysql:rw
+      - /var/node/stacks/owncloud/${INSTANCE}/mysql:/var/lib/mysql:rw
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     networks:
@@ -67,7 +67,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - /_node/stacks/owncloud/${INSTANCE}/redis:/data:rw
+      - /var/node/stacks/owncloud/${INSTANCE}/redis:/data:rw
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     networks:
