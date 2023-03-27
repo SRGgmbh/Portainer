@@ -11,8 +11,8 @@ services:
       GUACD_HOSTNAME: ${GUACD_HOST}
       GUACD_PORT: ${GUACD_PORT}
     volumes:
-      - /_node/stacks/guacamole/${INSTANCE}/ROOT.war:/usr/local/tomcat/webapps/ROOT.war:ro
-      - /_node/stacks/guacamole/${INSTANCE}/home:/etc/guacamole:rw
+      - /var/node/stacks/guacamole/${INSTANCE}/ROOT.war:/usr/local/tomcat/webapps/ROOT.war:ro
+      - /var/node/stacks/guacamole/${INSTANCE}/home:/etc/guacamole:rw
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 networks:
