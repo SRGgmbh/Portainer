@@ -12,7 +12,7 @@ services:
       #Instance Setup
       WEBSOCKET_ENABLED: "true"
       ROCKET_WORKERS: 3
-      LOG_FILE: /_node/${INSTANCE}.log
+      LOG_FILE: /_node/vaultwarden_${INSTANCE}_team.log
       LOG_LEVEL: info
       EXTENDED_LOGGING: "true"
       #General Settings
