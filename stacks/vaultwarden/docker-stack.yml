@@ -51,9 +51,8 @@ services:
       #SMTP Email Settings
       _ENABLE_SMTP: "true"
       SMTP_HOST: "smtp.office365.com"
-      SMTP_SSL: "true"
-      SMTP_EXPLICIT_TLS: "false"
-      SMTP_PORT: "587"   
+      SMTP_SECURITY: "starttls"
+      SMTP_PORT: "587" 
       SMTP_FROM: ${O365_USERNAME}
       SMTP_FROM_NAME: "VaultWarden @ SRG - Systemhaus GmbH"
       SMTP_USERNAME: ${O365_USERNAME}
