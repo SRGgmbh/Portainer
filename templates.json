@@ -7,7 +7,7 @@
 		{
 			"type": 3,
 			"title": "Vaultwarden",
-			"description": "Alternative implementation of the Bitwarden server API",
+			"description": "Alternative implementation of the Bitwarden server API.",
 			"categories": [
 				"security"
 			],
@@ -94,7 +94,7 @@
 		{
 			"type": 3,
 			"title": "Vaultwarden (Freelancer)",
-			"description": "Alternative implementation of the Bitwarden server API.",
+			"description": "Alternative implementation of the Bitwarden server API. 0,25 vCore 128 MB Memory.",
 			"categories": [
 				"security"
 			],
@@ -176,7 +176,7 @@
 		{
 			"type": 3,
 			"title": "Vaultwarden (Team)",
-			"description": "Alternative implementation of the Bitwarden server API",
+			"description": "Alternative implementation of the Bitwarden server API. 0,5 vCore 256 MB Memory.",
 			"categories": [
 				"security"
 			],
@@ -258,7 +258,7 @@
 		{
 			"type": 3,
 			"title": "Vaultwarden (Default)",
-			"description": "Alternative implementation of the Bitwarden server API",
+			"description": "Alternative implementation of the Bitwarden server API. 1 vCore 512 MB Memory.",
 			"categories": [
 				"security"
 			],
