@@ -1,0 +1,38 @@
+version: '3'
+services:
+  nginx-proxy-manager:
+    container_name: nginx_${INSTANCE}
+    image: jc21/nginx-proxy-manager:${VERSION:-latest}
+    restart: ${RESTART}
+    ports:
+      - '80:80/tcp'
+      - '443:443/tcp'
+      - '81:81/tcp'
+    environment:
+      #DB_SQLITE_FILE: "/data/database.sqlite"
+      #PUID: 1000
+      #PGID: 1000
+      # Default Administrator User:
+      INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL}
+      INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      # Postgres parameters:
+      DB_POSTGRES_HOST: ${POSTGRES_HOST}
+      DB_POSTGRES_PORT: '5432'
+      DB_POSTGRES_USER: ${POSTGRES_USER}
+      DB_POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_POSTGRES_NAME: ${POSTGRES_DB}
+      # Uncomment this if IPv6 is not enabled on your host
+      DISABLE_IPV6: ${DISABLE_IPV6:-true}
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ${MOUNT:-/mnt}/${INSTANCE}/data:/data:rw
+      - ${MOUNT:-/mnt}/${INSTANCE}/letsencrypt:/etc/letsencrypt:rw
+    healthcheck:
+      test: ["CMD", "/usr/bin/check-health"]
+      interval: 10s
+      timeout: 3s
+networks:
+  default:
+    external: true
+    name: node-network
