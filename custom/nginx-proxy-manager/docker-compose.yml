@@ -10,8 +10,8 @@ services:
       - '81:81/tcp'
     environment:
       #DB_SQLITE_FILE: "/data/database.sqlite"
-      #PUID: 1000
-      #PGID: 1000
+      PUID: 1000
+      PGID: 1000
       # Default Administrator User:
       INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL}
       INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
@@ -26,8 +26,8 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - ${MOUNT:-/mnt}/${INSTANCE}/data:/data:rw
-      - ${MOUNT:-/mnt}/${INSTANCE}/letsencrypt:/etc/letsencrypt:rw
+      - ${MOUNT:-/tmp}/${INSTANCE}/data:/data:rw
+      - ${MOUNT:-/tmp}/${INSTANCE}/letsencrypt:/etc/letsencrypt:rw
     healthcheck:
       test: ["CMD", "/usr/bin/check-health"]
       interval: 10s
