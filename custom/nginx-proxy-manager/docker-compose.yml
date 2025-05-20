@@ -35,4 +35,4 @@ services:
 networks:
   default:
     external: true
-    name: node-network
+    name: ${NETWORK:-node-network}
