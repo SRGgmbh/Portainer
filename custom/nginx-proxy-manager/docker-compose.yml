@@ -1,4 +1,3 @@
-version: '3'
 services:
   nginx-proxy-manager:
     container_name: nginx_${INSTANCE}
