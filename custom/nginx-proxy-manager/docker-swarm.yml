@@ -11,6 +11,9 @@ services:
       #DB_SQLITE_FILE: "/data/database.sqlite"
       PUID: 1000
       PGID: 1000
+      # Default Administrator User:
+      INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL}
+      INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
       # Postgres parameters:
       DB_POSTGRES_HOST: ${POSTGRES_HOST}
       DB_POSTGRES_PORT: '5432'
