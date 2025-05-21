@@ -26,13 +26,13 @@ services:
       - '8080:8080'
     volumes:
       - ${MOUNT:-/tmp}/secrets/machinekey:/machinekey:rw
-    healthcheck:
-      test: ["CMD", "/usr/bin/check-health"]
-      interval: 10s
-      timeout: 3s
+    #healthcheck:
+    #  test: ["CMD", "/usr/bin/check-health"]
+    #  interval: 10s
+    #  timeout: 3s
     deploy:
       labels:
-        one.srg.container.image: "nginx-proxy-manager"
+        one.srg.container.image: "zitadel"
       placement:
         constraints:
           - node.role==worker
