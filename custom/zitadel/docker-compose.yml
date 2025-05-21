@@ -1,5 +1,6 @@
 services:
   zitadel:
+    container_name: zitadel_${INSTANCE}
     # The user should have the permission to write to ./machinekey
     user: "${UID:-1000}"
     restart: 'always'
@@ -25,7 +26,7 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - ${MOUNT:-/tmp}/zitadel/machinekey:/machinekey:rw
+      - ${MOUNT:-/tmp}/${INSTANCE}/machinekey:/machinekey:rw
     #healthcheck:
     #  test: ["CMD", "/usr/bin/check-health"]
     #  interval: 10s
