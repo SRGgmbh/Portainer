@@ -6,7 +6,7 @@ services:
     networks:
       - 'zitadel'
     image: 'ghcr.io/zitadel/zitadel:latest'
-    command: 'start-from-init --masterkey "${MASTER_KEY}" --tlsMode disabled'
+    command: '${ZITADEL_RUNTIME:-start-from-init} --masterkey "${MASTER_KEY}" --tlsMode disabled'
     environment:
       ZITADEL_DATABASE_POSTGRES_HOST: ${POSTGRES_HOST}
       ZITADEL_DATABASE_POSTGRES_PORT: 5432
@@ -35,7 +35,7 @@ services:
         one.srg.container.image: "zitadel"
       placement:
         constraints:
-          - node.role==worker
+          - node.role==${SWARM_ROLE:-worker}
       update_config:
         parallelism: 2
         delay: 10s
