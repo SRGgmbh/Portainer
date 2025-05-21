@@ -4,6 +4,7 @@ services:
     ports:
       - '80:80/tcp'
       - '443:443/tcp'
+      - '81:81/tcp'
       # Uncomment this if behind load balancer
       - '8000:8000/tcp'
     environment:
