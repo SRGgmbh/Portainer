@@ -1,11 +1,6 @@
 {
-    "Version" : "*",
-    "Image" : "",
-    "Environment" : {
-        "" : {}
-
-        "" : {}
-      
-    }
-
+    "ZITADEL_MASTER_KEY" : { "name" : "MASTER_KEY" },
+    "ZITADEL_DATABASE_POSTGRES_HOST" : { "name" : "POSTGRES_HOST", "label" : "ZITADEL_DATABASE_POSTGRES_HOST", "description" : "Hostname des Datenbank Servers (postgres)" },
+    "ZITADEL_DATABASE_POSTGRES_DATABASE" : { "name" : "POSTGRES_HOST", "label" : "ZITADEL_DATABASE_POSTGRES_DATABASE", "description" : "Name der Datenbank (postgres)", "default" : "zitadel", "preset" : true },
+    "ZITADEL_DATABASE_POSTGRES_USER_USERNAME" : { "name" : "POSTGRES_HOST", "Label" : "ZITADEL_DATABASE_POSTGRES_USER_USERNAME", "Description" : "Benutzername für die Anmeldung am Datenbank Server (postgres)", "default" : "zitadel", "preset" : true }
 }
