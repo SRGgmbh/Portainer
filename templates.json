@@ -5,12 +5,10 @@
 	      "type": "container",
 	      "title": "Cloudflared (Test: Hello World)",
 	      "description": "Client for Cloudflare Tunnel, a daemon that exposes private services through the Cloudflare edge.",
-	      "note": "",
 	      "categories": ["zero-trust"],
 	      "platform": "linux",
 	      "logo": "https://www.gravatar.com/avatar/c2d72241e196b5c37c53acabbabb6a74?s=120&r=g&d=404",
 	      "image": "cloudflare/cloudflared:latest",
-	      "volumes": ["cloudflared", "/volume"],
 	      "command": "--tunnel --no-autoupdate --hello-world"
 	    },
 	    {
@@ -42,7 +40,7 @@
 	      "platform": "windows",
 	      "logo": "https://www.gravatar.com/avatar/681edab450c1ebab7d83e7266b1d0fbb?s=120&r=g&d=404",
 	      "image": "portainer/agent:latest",
-	      "command": "--mount type=npipe,src=\\.\pipe\docker_engine,dst=\\.\pipe\docker_engine --mount type=bind,src=C:\ProgramData\docker\volumes,dst=C:\ProgramData\docker\volumes --mount type=volume,src=portainer_edge_agent,dst=C:\data --restart always -e EDGE=1 -e EDGE_INSECURE_POLL=1 --name portainer_edge_agent"
+	      "command": "--mount type=npipe,src=\\\\.\\pipe\\docker_engine,dst=\\\\.\\pipe\\docker_engine --mount type=bind,src=C:\\ProgramData\\docker\\volumes,dst=C:\\ProgramData\\docker\\volumes --mount type=volume,src=portainer_edge_agent,dst=C:\\data --restart always -e EDGE=1 -e EDGE_INSECURE_POLL=1 --name portainer_edge_agent"
 	    }
 	]
 }
