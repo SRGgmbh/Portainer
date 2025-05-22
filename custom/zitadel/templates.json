@@ -1,6 +1,6 @@
 {
         {
-            "id": -1,
+            "id": 1,
             "type": 2,
             "title": "Zitadel (Standalone)",
             "description": "Identity infrastructure, simplified for you (https://zitadel.com/)",
@@ -23,7 +23,7 @@
             ]
         },
         {
-            "id": -1,
+            "id": 2,
             "type": 2,
             "title": "Zitadel (Swarm)",
             "description": "Identity infrastructure, simplified for you (https://zitadel.com/).<br/>SWARM_ROLE:<br/><b>manager</b> -> init and setup container<br/><b>worker</b> -> runtime only containers",
