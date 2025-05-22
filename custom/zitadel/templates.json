@@ -14,13 +14,7 @@
                 "url": "https://github.com/SRGgmbh/Portainer",
                 "stackfile": "custom/zitadel/docker-compose.yml"
             },
-            "env": [
-                {
-                    "name": "Placeholder",
-                    "label": "Evironment variables gets filled by templates service",
-                    "default": "https://templates.srg.farm"
-                }
-            ]
+            "env": []
         },
         {
             "id": 2,
@@ -37,12 +31,6 @@
                 "url": "https://github.com/SRGgmbh/Portainer",
                 "stackfile": "custom/zitadel/docker-swarm.yml"
             },
-            "env": [
-                {
-                    "name": "Placeholder",
-                    "label": "Evironment variables gets filled by templates service",
-                    "default": "https://templates.srg.farm"
-                }
-            ]
+            "env": []
         },
 }
