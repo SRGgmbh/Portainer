@@ -1,36 +1,40 @@
-[
-        {
-            "id": 1,
-            "type": 2,
-            "title": "Zitadel (Standalone)",
-            "description": "Identity infrastructure, simplified for you (https://zitadel.com/)",
-            "note": "Notes gets filled by templates service. <b>see: <code>https://templates.srg.farm</code></b>",
-            "categories": [
-                "Identity"
-            ],
-            "platform": "linux",
-            "logo": "https://zitadel.com/icons/apple-touch-icon.png",
-            "repository": {
-                "url": "https://github.com/SRGgmbh/Portainer",
-                "stackfile": "custom/zitadel/docker-compose.yml"
-            },
-            "env": []
-        },
-        {
-            "id": 2,
-            "type": 2,
-            "title": "Zitadel (Swarm)",
-            "description": "Identity infrastructure, simplified for you (https://zitadel.com/).<br/>SWARM_ROLE:<br/><b>manager</b> -> init and setup container<br/><b>worker</b> -> runtime only containers",
-            "note": "Notes gets filled by templates service. <b>see: <code>https://templates.srg.farm</code></b>",
-            "categories": [
-                "Identity"
-            ],
-            "platform": "linux",
-            "logo": "https://zitadel.com/icons/apple-touch-icon.png",
-            "repository": {
-                "url": "https://github.com/SRGgmbh/Portainer",
-                "stackfile": "custom/zitadel/docker-swarm.yml"
-            },
-            "env": []
-        },
-]
+{
+        "version" : "zitadel-v1"
+        "templates" : [
+                {
+                    "id": 1,
+                    "type": 2,
+                    "title": "Zitadel (Standalone)",
+                    "description": "Identity infrastructure, simplified for you (https://zitadel.com/)",
+                    "note": "Notes gets filled by templates service. <b>see: <code>https://templates.srg.farm</code></b>",
+                    "categories": [
+                        "Identity"
+                    ],
+                    "platform": "linux",
+                    "logo": "https://zitadel.com/icons/apple-touch-icon.png",
+                    "repository": {
+                        "url": "https://github.com/SRGgmbh/Portainer",
+                        "stackfile": "custom/zitadel/docker-compose.yml"
+                    },
+                    "env": []
+                },
+                {
+                    "id": 2,
+                    "type": 2,
+                    "title": "Zitadel (Swarm)",
+                    "description": "Identity infrastructure, simplified for you (https://zitadel.com/).<br/>SWARM_ROLE:<br/><b>manager</b> -> init and setup container<br/><b>worker</b> -> runtime only containers",
+                    "note": "Notes gets filled by templates service. <b>see: <code>https://templates.srg.farm</code></b>",
+                    "categories": [
+                        "Identity"
+                    ],
+                    "platform": "linux",
+                    "logo": "https://zitadel.com/icons/apple-touch-icon.png",
+                    "repository": {
+                        "url": "https://github.com/SRGgmbh/Portainer",
+                        "stackfile": "custom/zitadel/docker-swarm.yml"
+                    },
+                    "env": []
+                }
+        ]
+}
+
