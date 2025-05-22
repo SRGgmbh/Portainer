@@ -1,8 +1,5 @@
 {
-	"version": "2",
-	"_comment": "customized copy of original portainer template file",
-	"_source": "https://raw.githubusercontent.com/portainer/templates/master/templates-2.0.json",
-	"_git": "https://github.com/SRGgmbh/Portainer.git",
+	"version": "1",
 	"templates": [
 		{
 			"type": 3,
