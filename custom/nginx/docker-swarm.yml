@@ -52,7 +52,7 @@ services:
         constraints:
           - node.role==manager
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
         order: stop-first
       restart_policy:
@@ -112,7 +112,7 @@ services:
         constraints:
           - node.role==${NODE_SWARM_ROLE:-worker}
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
         order: stop-first
       restart_policy:
