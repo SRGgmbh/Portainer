@@ -9,8 +9,8 @@ services:
       - '8000:8000/tcp'
     environment:
       #DB_SQLITE_FILE: "/data/database.sqlite"
-      PUID: 1000
-      PGID: 1000
+      #PUID: 1000
+      #PGID: 1000
       # Default Administrator User:
       INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL}
       INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
