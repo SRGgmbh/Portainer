@@ -25,7 +25,7 @@ services:
       DB_POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       DB_POSTGRES_NAME: ${POSTGRES_DB:-nginx}
       # Uncomment this if IPv6 is not enabled on your host
-      DISABLE_IPV6: ${DISABLE_IPV6:-true} #IPv4 Only -> IPv6 terminated by worker proxies
+      DISABLE_IPV6: true #IPv4 Only -> IPv6 terminated by worker proxies
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
