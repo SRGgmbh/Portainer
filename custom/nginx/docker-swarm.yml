@@ -60,15 +60,12 @@ services:
       # Uncomment this if behind load balancer
       - '8000:8000/tcp'
     environment:
-      # Default Administrator User:
-      # INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL} # worker nodes dont have an management interface
-      # INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD} # worker nodes dont have an management interface
       # Postgres parameters:
-      DB_POSTGRES_HOST: ${POSTGRES_HOST}
-      DB_POSTGRES_PORT: '5432'
-      DB_POSTGRES_USER: ${POSTGRES_USER}
-      DB_POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      DB_POSTGRES_NAME: ${POSTGRES_DB}
+      DB_POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
+      DB_POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      DB_POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      DB_POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      DB_POSTGRES_NAME: ${POSTGRES_DB:-nginx}
       # Uncomment this if IPv6 is not enabled on your host
       # DISABLE_IPV6: ${DISABLE_IPV6:-true}
     volumes:
