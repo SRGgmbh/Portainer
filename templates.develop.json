@@ -1,128 +1,150 @@
 {
 	"version": "3",
 	"templates": [
-	    {
-	      "id": 1000000001,
-	      "type": 1,
-	      "title": "Test | Docker (Hello World)",
-	      "description": "Client for Cloudflare Tunnel, a daemon that exposes private services through the Cloudflare edge.",
-	      "categories": ["test", "edge"],
-	      "platform": "linux",
-	      "logo": "https://hub.docker.com/favicon.ico",
-	      "image": "hello-world:latest"
-	    },
-	    {
-	      "id": 1000000002,
-	      "type": 1,
-	      "title": "Test | Docker (Hello World)",
-	      "description": "Client for Cloudflare Tunnel, a daemon that exposes private services through the Cloudflare edge.",
-	      "categories": ["test", "edge"],
-	      "platform": "windows",
-	      "logo": "https://hub.docker.com/favicon.ico",
-	      "image": "hello-world:latest"
-	    },
-	    {
-	      "id": 1000000003,
-	      "type": 1,
-	      "title": "Test | Cloudflared (Hello World)",
-	      "description": "Client for Cloudflare Tunnel, a daemon that exposes private services through the Cloudflare edge.",
-	      "categories": ["test", "edge", "zero-trust"],
-	      "platform": "linux",
-	      "logo": "https://www.gravatar.com/avatar/c2d72241e196b5c37c53acabbabb6a74?s=120&r=g&d=404",
-	      "image": "cloudflare/cloudflared:latest",
-	      "command": "--tunnel --no-autoupdate --hello-world"
-	    },
-	    {
-	      "id": 1999999999,
-	      "type": 1,
-	      "title": "Example | Template (Env: parameters)",
-	      "description": "Example for portainer template parameters",
-	      "categories": ["example"],
-	      "logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
-        "env": [
-          {
-            "name": "EXAMPLE_ENV_MINIMUM",
-            "label": "Beispiel Parameter"
-          },
-          {
-            "name": "EXAMPLE_ENV_DESCRIPTION",
-            "label": "Beispiel Parameter",
-            "description": "Beispiel Parameter Beschreibung"
-          },
-          {
-            "name": "EXAMPLE_ENV_NOTE",
-            "label": "Beispiel Parameter",
-            "description": "<b>Beispiel</b> Parameter Beschreibung (kein HTML möglich)",
-            "note": "<b>Beispiel</b> Parameter Bemerkung (HTML möglich)"
-          },
-          {
-            "name": "EXAMPLE_ENV_CONTAINER",
-            "label": "Beispiel Parameter (type: container)",
-            "type": "container"
-          },
-          {
-            "name": "EXAMPLE_ENV_SET_TEXT",
-            "label": "Beispiel Parameter (set: yes)",
-            "set": "yes"
-          },
-          {
-            "name": "EXAMPLE_ENV_SET_TEXT",
-            "label": "Beispiel Parameter with value set",
-            "set": "yes"
-          },
-          {
-            "name": "WOWZA_KEY",
-            "label": "License key"
-          }
-        ],
-	      "image": "hello-world:latest"
-	    },
-	    {
-	      "id": 1999999998,
-	      "type": 1,
-	      "title": "Example | Template (Platform: linux)",
-	      "description": "Example for portainer template parameters",
-	      "categories": ["example"],
-	      "logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
-	      "image": "hello-world:latest",
-	      "platform": "linux"
-	    },
-	    {
-	      "id": 1999999997,
-	      "type": 1,
-	      "title": "Example | Template (Platform: windows)",
-	      "description": "Example for portainer template parameters",
-	      "categories": ["example"],
-	      "logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
-	      "image": "hello-world:latest",
-	      "platform": "windows"
-	    },
-	    {
-	      "id": 2000000001,
-	      "type": 1,
-	      "title": "Example | Template (Type: 1)",
-	      "description": "Example for portainer template types",
-	      "categories": ["example"],
-	      "logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
-	      "image": "hello-world:latest"
-	    },
-	    {
-	      "id": 2000000002,
-	      "type": 2,
-	      "title": "Example | Template (Type: 2)",
-	      "description": "Example for portainer template types",
-	      "categories": ["example"],
-	      "logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
-	      "image": "hello-world:latest"
-	    },
-	    {
-	      "id": 2000000003,
-	      "type": 3,
-	      "title": "Example | Template (Type: 3)",
-	      "description": "Example for portainer template types",
-	      "categories": ["example"],
-	      "logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
-	      "image": "hello-world:latest"
-	    }
+		{
+			"id": 1000000001,
+			"type": 1,
+			"title": "Test | Docker (Hello World)",
+			"description": "Client for Cloudflare Tunnel, a daemon that exposes private services through the Cloudflare edge.",
+			"categories": [
+				"test",
+				"edge"
+			],
+			"platform": "linux",
+			"logo": "https://hub.docker.com/favicon.ico",
+			"image": "hello-world:latest"
+		},
+		{
+			"id": 1000000002,
+			"type": 1,
+			"title": "Test | Docker (Hello World)",
+			"description": "Client for Cloudflare Tunnel, a daemon that exposes private services through the Cloudflare edge.",
+			"categories": [
+				"test",
+				"edge"
+			],
+			"platform": "windows",
+			"logo": "https://hub.docker.com/favicon.ico",
+			"image": "hello-world:latest"
+		},
+		{
+			"id": 1000000003,
+			"type": 1,
+			"title": "Test | Cloudflared (Hello World)",
+			"description": "Client for Cloudflare Tunnel, a daemon that exposes private services through the Cloudflare edge.",
+			"categories": [
+				"test",
+				"edge",
+				"zero-trust"
+			],
+			"platform": "linux",
+			"logo": "https://www.gravatar.com/avatar/c2d72241e196b5c37c53acabbabb6a74?s=120&r=g&d=404",
+			"image": "cloudflare/cloudflared:latest",
+			"command": "--tunnel --no-autoupdate --hello-world"
+		},
+		{
+			"id": 1999999999,
+			"type": 1,
+			"title": "Example | Template (Env: parameters)",
+			"description": "Example for portainer template parameters",
+			"categories": [
+				"example"
+			],
+			"logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
+			"env": [
+				{
+					"name": "EXAMPLE_ENV_MINIMUM",
+					"label": "Beispiel Parameter"
+				},
+				{
+					"name": "EXAMPLE_ENV_DESCRIPTION",
+					"label": "Beispiel Parameter",
+					"description": "Beispiel Parameter Beschreibung"
+				},
+				{
+					"name": "EXAMPLE_ENV_NOTE",
+					"label": "Beispiel Parameter",
+					"description": "<b>Beispiel</b> Parameter Beschreibung (kein HTML möglich)",
+					"note": "<b>Beispiel</b> Parameter Bemerkung (HTML möglich)"
+				},
+				{
+					"name": "EXAMPLE_ENV_CONTAINER",
+					"label": "Beispiel Parameter (type: container)",
+					"type": "container"
+				},
+				{
+					"name": "EXAMPLE_ENV_SET_TEXT",
+					"label": "Beispiel Parameter (set: yes)",
+					"set": "yes"
+				},
+				{
+					"name": "EXAMPLE_ENV_SET_TEXT",
+					"label": "Beispiel Parameter with value set",
+					"set": "yes"
+				},
+				{
+					"name": "WOWZA_KEY",
+					"label": "License key"
+				}
+			],
+			"image": "hello-world:latest"
+		},
+		{
+			"id": 1999999998,
+			"type": 1,
+			"title": "Example | Template (Platform: linux)",
+			"description": "Example for portainer template parameters",
+			"categories": [
+				"example"
+			],
+			"logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
+			"image": "hello-world:latest",
+			"platform": "linux"
+		},
+		{
+			"id": 1999999997,
+			"type": 1,
+			"title": "Example | Template (Platform: windows)",
+			"description": "Example for portainer template parameters",
+			"categories": [
+				"example"
+			],
+			"logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
+			"image": "hello-world:latest",
+			"platform": "windows"
+		},
+		{
+			"id": 2000000001,
+			"type": 1,
+			"title": "Example | Template (Type: 1)",
+			"description": "Example for portainer template types",
+			"categories": [
+				"example"
+			],
+			"logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
+			"image": "hello-world:latest"
+		},
+		{
+			"id": 2000000002,
+			"type": 2,
+			"title": "Example | Template (Type: 2)",
+			"description": "Example for portainer template types",
+			"categories": [
+				"example"
+			],
+			"logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
+			"image": "hello-world:latest"
+		},
+		{
+			"id": 2000000003,
+			"type": 3,
+			"title": "Example | Template (Type: 3)",
+			"description": "Example for portainer template types",
+			"categories": [
+				"example"
+			],
+			"logo": "https://srg.gmbh/favicon/android-icon-192x192.png",
+			"image": "hello-world:latest"
+		}
 	]
 }
