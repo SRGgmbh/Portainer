@@ -98,7 +98,7 @@ services:
         target: /etc/letsencrypt #should be shared on all instances
         bind:
             create_host_path: false
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/manager/data/keys.json:/data/keys.json:ro #should be used on all instances
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/manager/keys.json:/data/keys.json:ro #should be used on all instances
     healthcheck:
       test: ["CMD", "/usr/bin/check-health"]
       interval: 10s
