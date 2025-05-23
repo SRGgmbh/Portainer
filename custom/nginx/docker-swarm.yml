@@ -1,42 +1,41 @@
 services:
-  nginx-proxy-manager:
+  manager: # reverse proxies does not care about container security they are use for tls termination and dynamically update changes from database
     image: jc21/nginx-proxy-manager:${VERSION:-latest}
     ports:
-      - '80:80/tcp'
-      - '443:443/tcp'
-      - '81:81/tcp'
-      # Uncomment this if behind load balancer
-      - '8000:8000/tcp'
+      - '80:80/tcp' # http port -> behind load balancer
+      - '443:443/tcp' # https port -> behind load balancer 
+      - '81:81/tcp' # behind worker proxies via container name (i.e. http://manager:81) or swarm-network
     environment:
-      #DB_SQLITE_FILE: "/data/database.sqlite"
-      #PUID: 1000
-      #PGID: 1000
+      #DB_SQLITE_FILE: "/data/database.sqlite" # revere proxy need a postgres configuration database accessed by white listed hosts with valid credentials
+      #PUID: 1000 #-> NODE_SWARM_MOUNT need root access to overwrite nginx configuration dynamically from database when behind load-balancer to proxy containers and protect applications from common expoits
+      #PGID: 1000 #-> NODE_SWARM_MOUNT need root access to overwrite nginx configuration dynamically from database when behind load-balancer to proxy containers and protect applications from common expoits
       # Default Administrator User:
-      INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL}
-      INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-changeme}
       # Postgres parameters:
-      DB_POSTGRES_HOST: ${POSTGRES_HOST}
-      DB_POSTGRES_PORT: '5432'
-      DB_POSTGRES_USER: ${POSTGRES_USER}
-      DB_POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      DB_POSTGRES_NAME: ${POSTGRES_DB}
+      DB_POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
+      DB_POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      DB_POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      DB_POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      DB_POSTGRES_NAME: ${POSTGRES_DB:-nginx}
       # Uncomment this if IPv6 is not enabled on your host
-      DISABLE_IPV6: ${DISABLE_IPV6:-true}
+      DISABLE_IPV6: ${DISABLE_IPV6:-true} #IPv4 Only -> IPv6 terminated by worker proxies
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - ${MOUNT:-/tmp}/${INSTANCE}/data:/data:rw
-      - ${MOUNT:-/tmp}/${INSTANCE}/letsencrypt:/etc/letsencrypt:rw
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/manager/data:/data:rw # global manager data -> keys.json
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/letsencrypt:/etc/letsencrypt:rw #should be shared on all instances
     healthcheck:
       test: ["CMD", "/usr/bin/check-health"]
       interval: 10s
       timeout: 3s
     deploy:
+      replicas: 1
       labels:
-        one.srg.container.image: "nginx-proxy-manager"
+        one.srg.container.image: "reverse-proxy-manager"
       placement:
         constraints:
-          - node.role==worker
+          - node.role==manager
       update_config:
         parallelism: 2
         delay: 10s
@@ -51,6 +50,59 @@ services:
           cpus: '1'
           memory: 512M
       mode: global
+
+  reverse-proxy: # reverse proxies does not care about container security they are use for tls termination and dynamically update changes from database
+    image: jc21/nginx-proxy-manager:${VERSION:-latest}
+    ports:
+      - '80:80/tcp'
+      - '443:443/tcp'
+      #- '81:81/tcp' # worker nodes dont have an management interface
+      # Uncomment this if behind load balancer
+      - '8000:8000/tcp'
+    environment:
+      # Default Administrator User:
+      # INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL} # worker nodes dont have an management interface
+      # INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD} # worker nodes dont have an management interface
+      # Postgres parameters:
+      DB_POSTGRES_HOST: ${POSTGRES_HOST}
+      DB_POSTGRES_PORT: '5432'
+      DB_POSTGRES_USER: ${POSTGRES_USER}
+      DB_POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_POSTGRES_NAME: ${POSTGRES_DB}
+      # Uncomment this if IPv6 is not enabled on your host
+      # DISABLE_IPV6: ${DISABLE_IPV6:-true}
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/volumes/nginx}/reverse-proxy/data:/data:rw
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/manager/data/keys.json:/data/keys.json:ro
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/letsencrypt:/etc/letsencrypt:rw #should be shared on all instances 
+    healthcheck:
+      test: ["CMD", "/usr/bin/check-health"]
+      interval: 10s
+      timeout: 3s
+    deploy:
+      replicas: ${NODE_SWARM_REPLICAS:-2}
+      labels:
+        one.srg.container.image: "reverse-proxy"
+      placement:
+        constraints:
+          - node.role==${NODE_SWARM_ROLE:-worker}
+      update_config:
+        parallelism: 2
+        delay: 10s
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+      mode: global
+      
 networks:
   default:
     external: true
