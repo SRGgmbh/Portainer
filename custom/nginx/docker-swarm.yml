@@ -89,7 +89,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - type: bind
-        source: ${MOUNT:-/mnt/swarm/volumes/nginx}/reverse-proxy/data
+        source: ${MOUNT:-/mnt/swarm/volumes/nginx}/reverse-proxy
         target: /data #will be recreated on all nodes
         bind:
             create_host_path: true
