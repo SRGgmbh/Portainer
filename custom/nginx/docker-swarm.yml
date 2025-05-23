@@ -71,9 +71,10 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/volumes/nginx}/reverse-proxy/data:/data:rw
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/manager/data/keys.json:/data/keys.json:ro
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/letsencrypt:/etc/letsencrypt:rw #should be shared on all instances 
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/letsencrypt:/etc/letsencrypt:rw #should be shared on all instances
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/volumes/nginx}/reverse-proxy/data:/data:rw #will be recreated on all nodes
+      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/manager/data/keys.json:/data/keys.json:ro #should be used on all instances
+       
     healthcheck:
       test: ["CMD", "/usr/bin/check-health"]
       interval: 10s
