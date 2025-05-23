@@ -3,7 +3,7 @@ services:
     image: jc21/nginx-proxy-manager:${VERSION:-latest}
     ports:
       - '37080:80/tcp' # http port -> public ip catch all
-      - '47443:443/tcp' # https port -> public ip catch all
+      - '37443:443/tcp' # https port -> public ip catch all
       - '81:81/tcp' # behind worker proxies via container name (i.e. http://manager:81) or swarm-network
       #- '8000:8000/tcp' # will be forwarded for portainer edge agents
       # Cloudflare Ports, will be forwarded to manager on 404 (https://blog.cloudflare.com/cloudflare-now-supporting-more-ports/https://blog.cloudflare.com/cloudflare-now-supporting-more-ports/)
