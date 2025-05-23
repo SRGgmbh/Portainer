@@ -5,8 +5,8 @@ services:
       - '81:81/tcp' # behind worker proxies via container name (i.e. http://manager:81) or swarm-network
     environment:
       #DB_SQLITE_FILE: "/data/database.sqlite" # revere proxy need a postgres configuration database accessed by white listed hosts with valid credentials
-      #PUID: 1000 #-> NODE_SWARM_MOUNT need root access to overwrite nginx configuration dynamically from database when behind load-balancer to proxy containers and protect applications from common expoits
-      #PGID: 1000 #-> NODE_SWARM_MOUNT need root access to overwrite nginx configuration dynamically from database when behind load-balancer to proxy containers and protect applications from common expoits
+      PUID: 1000 #-> NODE_SWARM_MOUNT need root access to overwrite nginx configuration dynamically from database when behind load-balancer to proxy containers and protect applications from common expoits
+      PGID: 1000 #-> NODE_SWARM_MOUNT need root access to overwrite nginx configuration dynamically from database when behind load-balancer to proxy containers and protect applications from common expoits
       # Default Administrator User:
       INITIAL_ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
       INITIAL_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-changeme}
@@ -69,6 +69,8 @@ services:
       - '8080:8080/tcp' # http port -> behind cloudflare will be forwarded to http://manager:37080 on 404
       - '8443:8443/tcp' # https port -> behind cloudflare will be forwarded to https://manager:37443 on 404
     environment:
+      PUID: 1000 #-> NODE_SWARM_MOUNT need root access to overwrite nginx configuration dynamically from database when behind load-balancer to proxy containers and protect applications from common expoits
+      PGID: 1000 #-> NODE_SWARM_MOUNT need root access to overwrite nginx configuration dynamically from database when behind load-balancer to proxy containers and protect applications from common expoits
       # Postgres parameters:
       DB_POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
       DB_POSTGRES_PORT: ${POSTGRES_PORT:-5432}
@@ -81,7 +83,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - type: bind
-        source: ${MOUNT:-/mnt/swarm/volumes/nginx}/reverse-proxy
+        source: ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/manager
         target: /data #will be recreated on all nodes
         bind:
             create_host_path: true
@@ -90,11 +92,7 @@ services:
         target: /etc/letsencrypt #should be shared on all instances
         bind:
             create_host_path: false
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/manager/keys.json:/data/keys.json:rw #should be used on all instances
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/manager/access:/data/access:rw #should be used on all instances
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/manager/custom_ssl:/data/custom_ssl:rw #should be used on all instances
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/manager/letsencrypt-acme-challenge:/data/letsencrypt-acme-challenge:rw #should be used on all instances
-      - ${NODE_SWARM_MOUNT:-/mnt/swarm/system/nginx}/reverse-proxy/manager/nginx:/data/nginx:rw #should be used on all instances
+      - ${MOUNT:-/tmp/reverse-proxy}:/data/logs:rw #should be run localy per node
     healthcheck:
       test: ["CMD", "/usr/bin/check-health"]
       interval: 10s
